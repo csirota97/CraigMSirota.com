@@ -1,5 +1,12 @@
+:root {
+  --background: #e5e7fd;
+  --comp1: #fde5fa;
+  --comp2: #f1fde5;
+}
+
 .App {
   text-align: center;
+  font-family: 'VT323';
 }
 
 .App-logo {
@@ -13,26 +20,108 @@
   }
 }
 
+@font-face {
+  font-family: 'VT323';
+  src: local('vt323'), url('./resources/fonts/vt323/VT323-Regular.ttf') format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: var(--background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
   font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: none;
+  /* color: white; */
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#screen-header {
+  background-color: var(--comp2);
+  color: black;
+  position: static;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: left;
+  filter: drop-shadow(0 1px 0 black);
+}
+
+.screen-header-menu-title {
+  padding-left: 5px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p.clock {
+  font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
+}
+.document {
+  position: relative;
+  align-self: flex-start;
+  border: 1px solid black;
+  width: 100vw;
+  z-index: 3;
+}
+
+.documents-wrapper {
+}
+
+.document-header {
+  background-color: var(--comp2);
+  color: black;
+  position: static;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: left;
+  filter: drop-shadow(0 1px 0 black);
+  user-select: none;
+}
+
+.document-header-menu-title {
+  padding-left: 5px;
+}
+
+button.document-close {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+}
+
+.document-body {
+  position: relative;
+  border: 3px solid var(--comp2);
+  background-color: white;
+  text-align: left;
+  padding: 3px;
+  overflow: auto;
+}
+
+.icons-wrapper {
+  position: absolute;
+  display: flex;
+  margin-right: 2em;
+  margin-block-start: 2em;
+  max-height: 80vh;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+p.clock {
+  position: absolute;
+  right: 10px;
 }
