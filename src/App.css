@@ -2,11 +2,13 @@
   --background: #e5e7fd;
   --comp1: #fde5fa;
   --comp2: #f1fde5;
+  /* --comp2: red; */
 }
 
 .App {
   text-align: center;
   font-family: 'VT323';
+  overflow: hidden;
 }
 
 .App-logo {
@@ -15,7 +17,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  #loading-indicator {
     animation: App-logo-spin infinite 20s linear;
   }
 }
@@ -25,6 +27,36 @@
   src: local('vt323'), url('./resources/fonts/vt323/VT323-Regular.ttf') format('truetype');
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+#loading-indicator {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  left: 50%;
+  top: 66%;
+  translate: -50% -50%;
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
 }
 
 .App-header {
@@ -57,27 +89,35 @@
 
 .screen-header-menu-title {
   padding-left: 5px;
+  user-select: none;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p.clock {
+.h1, .h2, .h3, .h4, .h5, .h6, p.clock {
   font-size: 1em;
   margin-top: 0;
   margin-bottom: 0;
   display: inline-block;
+  align-self: flex-start;
 }
 .document {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  top:0;
+  left:0;
   align-self: flex-start;
   border: 1px solid black;
-  width: 100vw;
+  width: fit-content;
   z-index: 3;
 }
 
 .documents-wrapper {
+  display: flex;
+  align-self: center;
 }
 
 .document-header {
-  background-color: var(--comp2);
+  background-color: var(--comp1);
   color: black;
   position: static;
   top: 0;
@@ -88,6 +128,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p.clock {
   text-align: left;
   filter: drop-shadow(0 1px 0 black);
   user-select: none;
+  cursor: grab;
+}
+
+.document-header:active {
+  cursor: grabbing;
 }
 
 .document-header-menu-title {
@@ -103,10 +148,10 @@ button.document-close {
 
 .document-body {
   position: relative;
-  border: 3px solid var(--comp2);
+  /* border: 3px solid var(--comp2); */
   background-color: white;
   text-align: left;
-  padding: 3px;
+  /* padding: 3px; */
   overflow: auto;
 }
 
@@ -124,4 +169,171 @@ button.document-close {
 p.clock {
   position: absolute;
   right: 10px;
+  user-select: none;
+}
+
+#contact-form-wrapper {
+  background-color: var(--comp2);
+  width: max-content;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+#contact-form-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 95%;
+}
+#contact-form-details-mid {
+  flex-direction: row;
+  display: flex;
+  border: 1px solid black;
+}
+
+#contact-form-details-labels {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: whitesmoke;
+  padding: 5px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#contact-form-details {
+  display: flex;
+  flex-direction: column;
+  flex: 7;
+  min-width: min-content;
+  background-color: white;
+  padding: 5px;
+  justify-content: flex-start;
+  padding-right: 5%;
+}
+
+#send-to, #send-from, #send-from-email, #subject {
+  border-style: none none solid solid;
+  background-color: whitesmoke;
+}
+
+#contact-form-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 95%;
+  flex: 5;
+}
+
+#contact-form-message>textarea {
+  border-radius: 0;
+  background-color: whitesmoke;
+  border-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  align-self: center;
+  height: 50%;
+  border: 1px solid black;
+}
+#contact-form-message>button {
+  width: max-content;
+  padding: 3px;
+  margin: 5px;
+  margin-right: 0;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.error-text {
+  color: red;
+  font-size: .5em;
+}
+
+#message-sent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  min-width: 16em;
+  height: 25%;
+  min-height: 150px;
+  background-color: var(--comp1);
+  z-index: 4;
+  border: 1px solid black;
+}
+#message-sent>h2 {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+form {
+  display: contents;
+}
+
+.vertical-margin-small {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.document-mover {
+  position: absolute;
+  transform: translateX(-50%);
+  border: 1px solid black;
+}
+
+.document-side-left {
+  position:absolute;
+  height: 100%;
+  top: 0;
+  left: -6px;
+  width: 12px;
+  /* background-color: red; */
+  cursor: ew-resize;
+}
+.document-side-right {
+  position:absolute;
+  height: 100%;
+  top: 0;
+  right: -6px;
+  width: 12px;
+  /* background-color: red; */
+  cursor: ew-resize;
+}
+
+.document-side-bottom {
+  position:absolute;
+  height: 12px;
+  bottom: -6px;
+  left: -0;
+  width: 100%;
+  /* background-color: red; */
+  cursor: ns-resize;
+}
+
+.document-side-right:active {
+  right: -500px;
+  width: 1000px;
+}
+
+.document-side-left:active {
+  left: -500px;
+  width: 1000px;
+}
+
+.document-side-bottom:active {
+  bottom: -500px;
+  height: 1000px;
+}
+
+
+.document-form {
+  border: 3px solid var(--comp2);
 }

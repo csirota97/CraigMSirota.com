@@ -18,8 +18,8 @@ const HeaderBar = () => {
   return (
     <div id='screen-header'>
       <div className='screen-header-menu-title'>
-        <h1>
-          Craig Sirota
+        <h1 className='h1'>
+          Craig M Sirota
         </h1>
         <p className='clock'>
           {`${hour}:${clock.minutes.toString().padStart(2, '0')} ${amPm}`}

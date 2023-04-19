@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import './icons.css';
+import './projects.css';
 import Screen from './components/Screen';
 
 function App() {
