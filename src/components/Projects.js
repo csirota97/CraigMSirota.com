@@ -1,24 +1,46 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import projects from '../resources/data/projects';
 import folderIcon from '../resources/images/folder.png';
 import filesIcon from '../resources/images/files.png';
 import backIcon from '../resources/images/backArrow.png';
 
 const ProjectsFolder = (props) => {
-  const {widthModifier, heightModifier} = props;
+  const {widthModifier, heightModifier, defaultProject} = props;
   const projectStructure = projects.projectsStructure;
-  const [activeChildren, setActiveChildren] = useState(projectStructure);
-  const [activeProject, setActiveProject] = useState({});
-  const [breadcrumb, setBreadcrumb] = useState([['My Projects',0]]);
+
+  const defaultActiveChildren = defaultProject ? projectStructure.filter((item) => {
+    if (defaultProject[0][1][0] === item.name) {
+      return true
+    }
+  })[0].children : undefined;
+
+  const [activeChildren, setActiveChildren] = useState(defaultProject ? defaultActiveChildren : projectStructure);
+  const [activeProject, setActiveProject] = useState(defaultProject ? defaultActiveChildren.filter(project=>project.name===defaultProject[1])[0] : {});
+  const [breadcrumb, setBreadcrumb] = useState(defaultProject ? defaultProject[0] : [['My Projects',0]]);
+  const [rerender, setRerender] = useState(true);
+  const [initialRender, setInitialRender] = useState(true);
+  const projectDescriptionRef = useRef({current: {innerHTML: ''}});
+
+  const triggerRerender = () => setRerender(!rerender);
+  useEffect(() => {
+    triggerRerender();
+  }, [activeProject]);
+
+  useEffect(() => {
+    if (initialRender) {
+      setInitialRender(false);
+
+    }
+  })
 
   return (
     <div id='projects-list-wrapper' style={{width: `calc(75vw + ${widthModifier}px`, height: `calc(75vh + ${heightModifier}px`}}>
       <div className='project-list-row background1 project-list-url-bar flex1'>
         {`"${breadcrumb.map(bc=>bc[0]).join('"->"')}"`}
       </div>
-      <ul className='flex4 project-list'>
+      <ul className={`project-list ${Object.keys(activeProject).length > 0 ? 'project-list-max-height' : ''}`}>
         {breadcrumb.length > 1 ? (
             <li>
               <a
@@ -112,10 +134,18 @@ const ProjectsFolder = (props) => {
         <div className='flex6 project-info-section'>
           <h3 className='vertical-margin-small'>{activeProject.name}</h3>
           <hr className='project-info-divider'/>
-          <h4 className='vertical-margin-small'>Technologies Used: {activeProject.languages}</h4>
+          {
+            activeProject.role && <h4 className='vertical-margin-small'>Roles: {activeProject.role}</h4>
+          }
+          {
+            activeProject.languages &&
+            <h4 className='vertical-margin-small'>Technologies Used: {activeProject.languages}</h4>
+          }
           <h4 className='vertical-margin-small'>Date Range: {activeProject.startDate}-{activeProject.endDate ? activeProject.endDate : 'Present'}</h4>
-          <p>{activeProject.description}</p>
+          <p ref={projectDescriptionRef}>{projectDescriptionRef.current.innerHTML = activeProject.description}</p>
+          {console.log(4444,projectDescriptionRef.current)}
           {activeProject.links && activeProject.links.map(link => <a href={link[0]} target="_blank" rel="noopener noreferrer">{link[1]}</a>)}
+          {activeProject.links && <br/>}
         </div>
       }
     </div>

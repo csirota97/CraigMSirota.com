@@ -9,6 +9,7 @@ import contactMeIcon from '../resources/images/contact.png';
 import folderIcon from '../resources/images/folder.png'
 import resume from '../resources/ResumeLateMarch2023.pdf';
 import ProjectsFolder from './Projects';
+import About from './About';
 import projects from '../resources/data/projects';
 
 const Screen = () => {
@@ -27,6 +28,7 @@ const Screen = () => {
   const [resumeHeightModifier, setResumeHeightModifier] = useState(0);
   const [contactHeightModifier, setContactHeightModifier] = useState(0);
   const [projectsHeightModifier, setProjectsHeightModifier] = useState(0);
+  const [defaultProject, setDefaultProject] = useState(null);
   const triggerRerender = () => setRerender(!rerender);
   console.log('---------------------------')
 
@@ -87,14 +89,34 @@ const Screen = () => {
           showAboutMe &&
           <Document
             title="About Me"
-            documentBody={"This page is still being worked on. Please come back later."}
+            documentBody={
+              <About
+                widthModifier={aboutWidthModifier}
+                heightModifier={aboutHeightModifier}
+                showProject={(projectLocationName) => {
+                  setDefaultProject(projectLocationName);
+                  setShowProjectsFolder(true);
+                  reprioritizeWindows('projects');
+                  triggerRerender();
+                }}
+                showContact={() => {
+                  setShowContactMe(true);
+                  reprioritizeWindows('contact');
+                  triggerRerender();
+                }}
+              />
+            }
+            // documentBody={"This page is still being worked on. Please come back later."}
             onCloseHandler={()=>setShowAboutMe(false)}
             z={documentWindowZIndex['about']}
             reprioritizeWindows={() => {
               reprioritizeWindows('about');
               triggerRerender();
             }}
+            widthModifier={aboutWidthModifier}
             setWidthModifier={setAboutWidthModifier}
+            heightModifier={aboutHeightModifier}
+            setHeightModifier={setAboutHeightModifier}
           />
         }
       </div>
@@ -143,8 +165,8 @@ const Screen = () => {
           showProjectsFolder &&
           <Document
             title="Projects"
-            documentBody={<ProjectsFolder widthModifier={projectsWidthModifier} heightModifier={projectsHeightModifier}/>}
-            onCloseHandler={()=>setShowProjectsFolder(false)}
+            documentBody={<ProjectsFolder widthModifier={projectsWidthModifier} heightModifier={projectsHeightModifier} defaultProject={defaultProject}/>}
+            onCloseHandler={()=>{setShowProjectsFolder(false); setDefaultProject(null)}}
             z={documentWindowZIndex['projects']}
             reprioritizeWindows={() => {
               reprioritizeWindows('projects');

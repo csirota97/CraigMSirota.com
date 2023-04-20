@@ -45,7 +45,7 @@ export default {
             {
               type: 'project',
               name: 'Kiosk Profiles Admin Build Tool React Uplift',
-              description: '',
+              description: 'The goal of this project was to uplift a user workflow from a Ruby On Rails based front end to a React front end, while maintaining the Rails backend.',
               languages: 'ReactJS/Ruby On Rails',
               startDate: 'July 2021',
               endDate: 'December 2021',
@@ -53,7 +53,8 @@ export default {
             {
               type: 'project',
               name: 'Scheduling Security Server Optimization',
-              description: '',
+              description: 'The goal of this project was to optimize the performance of our security server.<br>'+
+              'The database maintained a row for each permission given to each user, with 17 possible permissions. When many of users had every type of permission, querying that database had massive performance problems.<br>The solution was to add a permission type "all" to the table, which when a user had every permission, would reduce the database from 17 rows for the user to just a single row.',
               languages: 'C++',
               startDate: 'March 2021',
               endDate: 'June 2021',
@@ -61,7 +62,7 @@ export default {
             {
               type: 'project',
               name: 'Manual Scheduling Uplift',
-              description: '',
+              description: 'The goal of this project was to uplift our "Manual Scheduling" workflow from Java SWT to React.',
               languages: 'ReactJS',
               startDate: 'October 2020',
               endDate: 'March 2021',
@@ -77,17 +78,59 @@ export default {
         {
           type: 'project',
           name: 'CraigMSirota.com',
-          description: '',
+          description: 'This is the website you are currently on! It\'s a personal portfolio website, '+
+          'showcasing my skills and highlighting my projects. The website is heavily inspired by late 90\'s era '+
+          'personal computer operating systems.',
           languages: 'ReactJS',
           startDate: 'March 2023',
+          links: [
+            ['https://github.com/csirota97/CraigMSirota.com','Github Repo'],
+          ],
         },
         {
           type: 'project',
           name: 'ALVAN',
-          description: '',
-          languages: 'ReactJS/Flask/SQL',
+          description: '<b>Automated Live Virtual Assistant Network</b><hr>'+
+            'ALVAN is a virtual assistant network, similar to the Google Home ecosystem. '+
+            '<p>The main ALVAN hub is designed to be run on an android tablet through the ALVAN HUB app. '+
+            'The hub can be interacted with via voice command, activated by the keyword <b><i>ALVAN</i></b>. '+
+            'The UI shows the user all reminders they set have for the current day, and the following two days, '+
+            'along with showing the weather forecast for each day.</p>'+
+            '<p>Currently in development is ALVAN Security, a security camera app to connect into the ALVAN '+
+            'ecosystem. These camera feeds will also be displayed in the ALVAN Hub.</p>'+
+            '<p>The ALVAN List app gives the user a way to visually add/delete/edit todo lists and reminders. '+
+            'It is designed to be run through the ALVAN List app on an android phone. ' + 
+            'The reminders can currently be added and queried through the hub\'s voice command as well.</p>',
+          languages: 'ReactJS/Flask/SQL/Firebase',
           startDate: 'February 2020',
-          links: [['adsf','asdfa'],['fdsfds','fdsfsd']],
+          links: [
+            ['https://github.com/csirota97/ALVAN-V4','UI and API Repo'],
+            ['https://github.com/csirota97/ALVAN-V4-Security','ALVAN Security Repo'],
+            ['https://github.com/csirota97/alvan_hub_app','ALVAN HUB Android Client Repo'],
+            ['https://github.com/csirota97/alvan_list_app','ALVAN List Android Client Repo'],
+            ['https://csirota97.github.io/ALVAN-V4/','Live ALVAN HUB'],
+            ['https://csirota97.github.io/ALVAN-V4/#/todoList','Live ALVAN List']
+          ],
+        },
+      ]
+    },
+    {
+      type: 'directory',
+      name: 'Non-Technical',
+      children: [
+        {
+          type: 'project',
+          name: 'College Band Radio',
+          description: 'College Band Radio was a podcast dedicated to showcasing the most exciting and interesting parts of the college marching band world through interviewing members of the marching band community, from students and alumni, to directors, show writers, and costume designers. In this role, I managed a team of, at the largest 10 people, was heavily involved in the episode planning process, oversaw the recording sessions, editted, and released each episode.<br>I also lead negotiations and communications with external business partners and sponsorships.',
+          role: 'Cofounder/Technical Producer/Team Manager',
+          startDate: 'June 2020',
+          endDate: 'December 2022',
+          links: [
+            ['https://podcasts.apple.com/us/podcast/college-band-radio/id1517824976','Apple Podcasts'],
+            ['https://open.spotify.com/show/0cuoElXZNYVs1OdFfNHuzm','Spotify'],
+            ['https://twitter.com/collegebandrdo?lang=en','Twitter'],
+            ['https://www.instagram.com/collegebandradio/?hl=en','Instagram'],
+          ],
         },
       ]
     }

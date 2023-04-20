@@ -116,8 +116,11 @@ li {
 }
 
 .project-list {
-  max-height: 50%;
   overflow-y: scroll;
+}
+
+.project-list-max-height {
+  max-height: 25%;
 }
 
 .vertical-divider {
