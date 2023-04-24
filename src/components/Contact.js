@@ -32,7 +32,6 @@ const Contact = (props) => {
       form.current.reset();
       setSent(true);
     } else {
-      console.log(name, email, subject, message)
       if (name.length === 0) setSenderNameError(errorText('Sender Name'));
       if (email.length === 0) setSenderEmailError(errorText('Sender Email'));
       if (subject.length === 0) setSubjectError(errorText('Subject'));

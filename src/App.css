@@ -388,3 +388,23 @@ img.headshot {
 .contact-info {
   margin:.1rem;
 }
+
+#resume-wrapper {
+  background-color: var(--comp2);
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+#resume-content {
+  background-color: white;
+  /* margin: ; */
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 98%;
+  height: 98%;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  overflow: scroll;
+}

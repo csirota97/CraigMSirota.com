@@ -112,6 +112,28 @@ export default {
             ['https://csirota97.github.io/ALVAN-V4/#/todoList','Live ALVAN List']
           ],
         },
+        {
+          type: 'project',
+          name: 'CheckifyMe',
+          description: 'A fun chrome extension that gives everybody verified checkmarks.<br><i>IN REVIEW TO BE ADDED TO CHROME WEB STORE</i>',
+          languages: 'Javascript',
+          startDate: 'April 2023',
+          endDate: 'April 2023',
+          links: [
+            ['https://github.com/csirota97/CheckifyMe','Github Repo'],
+          ],
+        },
+        {
+          type: 'project',
+          name: 'DashPicker',
+          description: "A chrome extension that adds a button to doordash to randomly select a restaurant for when you can't decide what to eat.",
+          languages: 'Javascript/CSS',
+          startDate: 'April 2023',
+          endDate: 'April 2023',
+          links: [
+            ['https://github.com/csirota97/DashPicker','Github Repo'],
+          ],
+        },
       ]
     },
     {

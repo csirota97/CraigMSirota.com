@@ -7,9 +7,9 @@ import aboutMeIcon from '../resources/images/aboutMe.png';
 import resumeIcon from '../resources/images/resume.png';
 import contactMeIcon from '../resources/images/contact.png';
 import folderIcon from '../resources/images/folder.png'
-import resume from '../resources/ResumeLateMarch2023.pdf';
 import ProjectsFolder from './Projects';
 import About from './About';
+import Resume from './Resume';
 import projects from '../resources/data/projects';
 
 const Screen = () => {
@@ -30,12 +30,6 @@ const Screen = () => {
   const [projectsHeightModifier, setProjectsHeightModifier] = useState(0);
   const [defaultProject, setDefaultProject] = useState(null);
   const triggerRerender = () => setRerender(!rerender);
-  console.log('---------------------------')
-
-  console.log(aboutWidthModifier)
-  console.log(resumeWidthModifier)
-  console.log(contactWidthModifier)
-  console.log(projectsWidthModifier)
 
   useEffect(() => {
     if (showAboutMe || showResume || showContactMe || showProjectsFolder) {
@@ -67,7 +61,6 @@ const Screen = () => {
 
   
   const reprioritizeWindows = (window) => {
-    console.log(window);
     const documentZIndex = documentWindowZIndex;
     Object.keys(documentZIndex).forEach(key => {
       if (key ===  window) {
@@ -126,10 +119,8 @@ const Screen = () => {
           <Document
             title="Resume"
             documentBody={
-              // <object data='../resources/ResumeLateMarch2023.pdf' type="application/pdf" frameborder="0" width="100%" height="600px" style="padding: 20px;">
-              //     <embed src="https://drive.google.com/file/d/1CRFdbp6uBDE-YKJFaqRm4uy9Z4wgMS7H/preview?usp=sharing" width="100%" height="600px"/> 
-              // </object>
-              <iframe height='600px' width='800px' title='Resume' src={resume}/>
+              <Resume widthModifier={resumeWidthModifier} heightModifier={resumeHeightModifier}/>
+              
             }
             onCloseHandler={()=>setShowResume(false)}
             z={documentWindowZIndex['resume']}
@@ -137,7 +128,10 @@ const Screen = () => {
               reprioritizeWindows('resume');
               triggerRerender();
             }}
+            widthModifier={resumeWidthModifier}
             setWidthModifier={setResumeWidthModifier}
+            heightModifier={resumeHeightModifier}
+            setHeightModifier={setResumeHeightModifier}
           />
         }
       </div>
@@ -187,7 +181,6 @@ const Screen = () => {
             setShowAboutMe(true);
             reprioritizeWindows('about');
             triggerRerender();
-            console.log(1)
           }}
           disabled={isDocumentShown}
         />
@@ -198,7 +191,6 @@ const Screen = () => {
             setShowProjectsFolder(true);
             reprioritizeWindows('projects');
             triggerRerender();
-            console.log(2)
           }}
           disabled={isDocumentShown}
         />
@@ -209,7 +201,6 @@ const Screen = () => {
             setShowResume(true);
             reprioritizeWindows('resume');
             triggerRerender();
-            console.log(3)
           }}
           disabled={isDocumentShown}
         />
@@ -220,7 +211,6 @@ const Screen = () => {
             setShowContactMe(true);
             reprioritizeWindows('contact');
             triggerRerender();
-            console.log(4)
           }}
           disabled={isDocumentShown}
         />

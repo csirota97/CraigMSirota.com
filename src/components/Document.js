@@ -12,8 +12,6 @@ const Document = (props) => {
   const [posY, setPosY] = useState(0);
   const [mousePosX, setMousePosX] = useState(0);
   const [mousePosY, setMousePosY] = useState(0);
-
-  console.log('yyy', widthModifier, setWidthModifier)
   
   useEffect(() => {
     const height = document.getElementsByClassName('document-body')[0]?.getBoundingClientRect().y + 10;
@@ -78,8 +76,6 @@ const Document = (props) => {
     setLeftSideClicked(false);
   };
   const onLeftSideClickMove = (e) => {
-    console.log('LEFT MOVE')
-
     let pageX = e.pageX;
     if (e.type === 'touchmove') {
       pageX = e.touches[0].pageX;
@@ -106,8 +102,6 @@ const Document = (props) => {
     setRightSideClicked(false);
   };
   const onRightSideClickMove = (e) => {
-    console.log('RIGHT MOVE')
-
     let pageX = e.pageX;
     if (e.type === 'touchmove') {
       pageX = e.touches[0].pageX;
@@ -135,8 +129,6 @@ const Document = (props) => {
     setBottomSideClicked(false);
   };
   const onBottomSideClickMove = (e) => {
-    console.log('BOTTOM MOVE')
-
     let pageY = e.pageY;
     if (e.type === 'touchmove') {
       pageY = e.touches[0].pageY;
@@ -175,10 +167,6 @@ const Document = (props) => {
           onMouseDown={onHeaderClick}
           onMouseUp={onHeaderClickUp}
           onTouchEnd={onHeaderClickUp}
-          onMouseEnter={(e) => {
-            console.log(e.buttons, e.button)
-
-          }}
 
         >
           <div className='document-header-menu-title'>

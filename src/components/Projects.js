@@ -122,7 +122,7 @@ const ProjectsFolder = (props) => {
                   </div>
                 }
                 <div className='flex3 project-list-dates '>
-                  {`${child.startDate || ''}${!child.startDate ? '' : child.endDate ? `-${child.endDate}` : '-Present' }`}
+                  {`${child.startDate || ''}${!child.startDate || child.endDate === child.startDate ? '' : child.endDate ? `-${child.endDate}` : '-Present' }`}
                 </div>
               </div>
             </a></li>
@@ -141,9 +141,8 @@ const ProjectsFolder = (props) => {
             activeProject.languages &&
             <h4 className='vertical-margin-small'>Technologies Used: {activeProject.languages}</h4>
           }
-          <h4 className='vertical-margin-small'>Date Range: {activeProject.startDate}-{activeProject.endDate ? activeProject.endDate : 'Present'}</h4>
+          <h4 className='vertical-margin-small'>Date Range: {activeProject.startDate}{activeProject.startDate === activeProject.endDate ? '' : `-${activeProject.endDate ? activeProject.endDate : 'Present'}`}</h4>
           <p ref={projectDescriptionRef}>{projectDescriptionRef.current.innerHTML = activeProject.description}</p>
-          {console.log(4444,projectDescriptionRef.current)}
           {activeProject.links && activeProject.links.map(link => <a href={link[0]} target="_blank" rel="noopener noreferrer">{link[1]}</a>)}
           {activeProject.links && <br/>}
         </div>
