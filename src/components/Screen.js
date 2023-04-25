@@ -12,11 +12,12 @@ import About from './About';
 import Resume from './Resume';
 import projects from '../resources/data/projects';
 
-const Screen = () => {
-  const [showAboutMe, setShowAboutMe] = useState(false);
-  const [showResume, setShowResume] = useState(false);
-  const [showContactMe, setShowContactMe] = useState(false);
-  const [showProjectsFolder, setShowProjectsFolder] = useState(false);
+const Screen = (props) => {
+  const { defaultWindow, loadedProject } = props;
+  const [showAboutMe, setShowAboutMe] = useState(defaultWindow.about || false);
+  const [showResume, setShowResume] = useState(defaultWindow.resume || false);
+  const [showContactMe, setShowContactMe] = useState(defaultWindow.contact || false);
+  const [showProjectsFolder, setShowProjectsFolder] = useState(defaultWindow.projects || false);
   const [isDocumentShown, setIsDocumentShown] = useState(false);
   const [documentWindowZIndex, setDocumentWindowZIndex] = useState({about: 0, resume: 1, contact: 2, projects: 3});
   const [rerender, setRerender] = useState(false);
@@ -28,7 +29,7 @@ const Screen = () => {
   const [resumeHeightModifier, setResumeHeightModifier] = useState(0);
   const [contactHeightModifier, setContactHeightModifier] = useState(0);
   const [projectsHeightModifier, setProjectsHeightModifier] = useState(0);
-  const [defaultProject, setDefaultProject] = useState(null);
+  const [defaultProject, setDefaultProject] = useState(loadedProject);
   const triggerRerender = () => setRerender(!rerender);
 
   useEffect(() => {
